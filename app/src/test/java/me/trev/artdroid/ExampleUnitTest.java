@@ -1,4 +1,4 @@
-package com.example.paint;
+package me.trev.artdroid;
 
 import org.junit.Test;
 
