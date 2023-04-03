@@ -4,4 +4,9 @@
         <item name="android:background">@color/gray_400</item>
 <!--        <item name="exampleColor">@color/light_blue_400</item>-->
     </style>
+
+    <style name="ShapeAppearanceOverlay.Material3.Button.Rounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

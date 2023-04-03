@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.paint'
+    namespace 'me.trev.artdroid'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.paint"
+        applicationId "me.trev.artdroid"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -36,4 +36,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation "com.github.skydoves:colorpickerview:2.2.4"
 }

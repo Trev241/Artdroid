@@ -18,6 +18,18 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/colorPickerButton"
+            android:contentDescription="@string/color_pick_desc"
+            android:gravity="center"
+            android:insetLeft="5dp"
+            android:insetTop="5dp"
+            android:insetRight="5dp"
+            android:insetBottom="5dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Rounded" />
+
         <TextView
             android:id="@+id/tvBrushWidth"
             android:layout_width="match_parent"

@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Artdroid</string>
+
     <string name="brush_width_desc">Adjust brush thickness</string>
+    <string name="color_pick_desc">Select color</string>
+
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 </resources>
