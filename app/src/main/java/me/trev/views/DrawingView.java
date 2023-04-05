@@ -37,10 +37,6 @@ public class DrawingView extends View {
         init(context);
     }
 
-    public Paint getPaint() {
-        return mPaint;
-    }
-
     private void init(Context context) {
         this.context = context;
 
@@ -133,4 +129,9 @@ public class DrawingView extends View {
 
         return true;
     }
+
+    public Paint getPaint() {
+        return mPaint;
+    }
+    public Bitmap getBitmap() { return mBitmap; }
 }

@@ -6,4 +6,7 @@
 
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+
+    <string name="menu_save">Save</string>
+    <string name="menu_share">Share</string>
 </resources>
