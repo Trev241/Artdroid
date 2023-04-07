@@ -1,14 +1,10 @@
 package me.trev.artdroid;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -23,12 +19,10 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.slider.LabelFormatter;
 import com.google.android.material.slider.Slider;
-import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.ColorPickerDialog;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -101,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private Uri mUri;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
@@ -138,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             values.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis());
 //            values.put(MediaStore.Images.Media.IS_PENDING, 1);
 
-            mUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            Uri mUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
             if (mUri != null) {
                 try {
                     OutputStream out = getContentResolver().openOutputStream(mUri);
@@ -161,14 +154,28 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         } else if (itemId == R.id.share) {
-            if (mUri != null) {
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("image/*");
-                shareIntent.putExtra(Intent.EXTRA_STREAM, mUri);
-                startActivity(Intent.createChooser(shareIntent, "Share to..."));
-            } else {
-                Toast.makeText(this, "Images can only be shared after being saved", Toast.LENGTH_SHORT).show();
+            File file = new File(getFilesDir(), "shared_image.png");
+
+            try {
+                FileOutputStream fos = new FileOutputStream(file);
+                drawingView.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, fos);
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+
+            Uri uri = FileProvider.getUriForFile(this, "me.trev.artdroid.fileprovider", file);
+
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            shareIntent.setData(uri);
+            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            Intent chooser = Intent.createChooser(shareIntent, "Share to...");
+            chooser.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+//            setResult(Activity.RESULT_OK, chooser);
+            startActivity(chooser);
 
             return true;
         } else {

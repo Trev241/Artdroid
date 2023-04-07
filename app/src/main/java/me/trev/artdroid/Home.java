@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +23,8 @@ public class Home extends AppCompatActivity {
         tvEmpty = findViewById(R.id.empty);
 
         findViewById(R.id.new_file).setOnClickListener(view -> {
-            String title = ((TextView) findViewById(R.id.filename_new)).getText().toString();
+            EditText editText = findViewById(R.id.filename_new);
+            String title = editText.getText().toString();
             File file = new File(getFilesDir() + File.separator + "saved", title + ".png");
             if (!file.getName().equals(title + ".png")) {
                 Toast.makeText(this, "A file name should not contain illegal characters!", Toast.LENGTH_LONG).show();
@@ -33,6 +35,8 @@ public class Home extends AppCompatActivity {
                 intent.putExtra("title", title);
                 startActivity(intent);
             }
+
+            editText.setText("");
         });
     }
     @Override
@@ -57,6 +61,7 @@ public class Home extends AppCompatActivity {
                     intent.putExtra("title", file.getName().substring(0, file.getName().length() - 4));
                     startActivity(intent);
                 });
+
                 list.addView(textView);
             }
         }
