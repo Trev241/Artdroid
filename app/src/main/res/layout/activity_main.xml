@@ -54,7 +54,7 @@
             android:rotation="270"
             android:value="3"
             android:valueFrom="1"
-            android:valueTo="50" />
+            android:valueTo="100" />
 
     </LinearLayout>
 

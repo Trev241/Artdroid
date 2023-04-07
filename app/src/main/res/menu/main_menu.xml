@@ -4,9 +4,16 @@
     <item
         android:id="@+id/save"
         android:icon="@android:drawable/ic_menu_save"
-        android:title="@string/menu_save" />
+        android:title="@string/menu_save"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/export"
+        android:icon="@android:drawable/ic_menu_set_as"
+        android:title="@string/menu_export"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/share"
         android:icon="@android:drawable/ic_menu_share"
-        android:title="@string/menu_share" />
+        android:title="@string/menu_share"
+        app:showAsAction="ifRoom"/>
 </menu>

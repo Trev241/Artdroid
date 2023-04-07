@@ -6,16 +6,20 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 public class DrawingView extends View {
     private Bitmap mBitmap;
+    private Bitmap mExtBitmap;
     private Canvas mCanvas;
     private Path mPath;
     private Paint mBitmapPaint;
     private Paint mPaint;
+    private String mTitle;
 
     Context context;
 
@@ -65,7 +69,7 @@ public class DrawingView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        mBitmap = (mExtBitmap != null) ? mExtBitmap : Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
     }
 
@@ -134,4 +138,7 @@ public class DrawingView extends View {
         return mPaint;
     }
     public Bitmap getBitmap() { return mBitmap; }
+    public void setBitmap(Bitmap bitmap) { mExtBitmap = bitmap; }
+    public String getTitle() { return mTitle; }
+    public void setTitle(String title) { mTitle = title; }
 }

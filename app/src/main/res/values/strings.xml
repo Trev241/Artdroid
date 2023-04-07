@@ -3,10 +3,19 @@
 
     <string name="brush_width_desc">Adjust brush thickness</string>
     <string name="color_pick_desc">Select color</string>
+    <string name="new_drawing_desc">Create a new file</string>
 
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
 
     <string name="menu_save">Save</string>
     <string name="menu_share">Share</string>
+    <string name="menu_export">Export</string>
+
+    <string name="home_create_title">Create new file</string>
+    <string name="home_filename">Title</string>
+    <string name="home_create_btn">Create</string>
+    <string name="home_load_title">Load saved file</string>
+    <string name="home_no_saved_files">No saved files to view. Create a new file to get started!</string>
+
 </resources>
